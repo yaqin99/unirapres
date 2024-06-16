@@ -19,8 +19,10 @@ use App\Http\Controllers\DosenController;
 
 
 Route::get('/',[PengajuanController::class , 'layout']);
+Route::get('/dosen/listPengajuan',[PengajuanController::class , 'list']);
 Route::get('/admin',[AdminController::class , 'adminLayout']);
 Route::get('/admin/pengajuan',[AdminController::class , 'adminPengajuan']);
+Route::get('/admin/berita',[AdminController::class , 'adminBerita']);
 
 Route::get('/dosen/signIn',[DosenController::class , 'signIn']);
 Route::get('/dosen/signUp',[DosenController::class , 'signUp']);

@@ -20,6 +20,11 @@
             <i class="bi bi-circle"></i><span>Pengajuan Surat</span>
           </a>
         </li>
+        <li>
+          <a href="/admin/berita">
+            <i class="bi bi-circle"></i><span>Berita</span>
+          </a>
+        </li>
        
         
       </ul>

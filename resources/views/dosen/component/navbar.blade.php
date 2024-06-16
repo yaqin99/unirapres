@@ -22,7 +22,7 @@
           <div class="offcanvas-body">
             <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link me-4 active text-light" href="#billboard">Home</a>
+                <a class="nav-link me-4 active text-light" href="/">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link me-4 text-light" href="#company-services">Katalog</a>
@@ -49,7 +49,7 @@
                           <hr class="dropdown-divider">
                         </li>
                         <li>
-                          <a href="blog.html" class="dropdown-item">Pengajuan</a>
+                          <a href="/dosen/listPengajuan" class="dropdown-item">Pengajuan</a>
                         </li>
                         <li>
                           <form action="/logout" method="post" >

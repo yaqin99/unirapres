@@ -10,23 +10,33 @@ class PengajuanController extends Controller
 {
     public function layout(){
         $data = Kategori::all();
+        $rilis = Pengajuan::with(['dosen' , 'kategori'])->where('status','Terbit')->paginate(4);
+        // dd($rilis);
         return view('dosen/welcome' , [
             'kategori' => $data , 
+            'rilis'=> $rilis,
+        ]);
+    }
+    public function list(){
+        $data = Kategori::all();
+        $books = Pengajuan::with(['dosen' , 'kategori'])->SearchPengajuan()->paginate(10);
+        return view('dosen/pages/list' , [
+            'kategori' => $data ,
+            'buku' => $books,
         ]);
     }
     public function pengajuan(){
-       
         request()->validate(
             [
-             'judul' => 'required|string|max:13' , 
-             'penulis' => 'required|string|max:13' , 
-             'ukuran' => 'required|string|max:13' , 
-             'jumlah_halaman' => 'required|string|max:13' , 
+             'judul' => 'required|string' , 
+             'penulis' => 'required|string' , 
+             'ukuran' => 'required|string' , 
+             'jumlah_halaman' => 'required|string' , 
              'kategori' => 'required' , 
              'tanggal' => 'required' , 
-             'cover' => 'required|max:30000|mimes:pdf,png,jpg,jpeg' , 
-             'daftar_isi' => 'required|max:30000|mimes:pdf,png,jpg,jpeg' , 
-             'isi_buku' => 'required|max:30000|mimes:pdf,png,jpg,jpeg' , 
+             'cover' => 'required|max:30000|mimes:jpeg,jpg,png' , 
+             'daftar_isi' => 'required|max:30000|mimes:pdf' , 
+             'isi_buku' => 'required|max:30000|mimes:pdf' , 
              'sinopsis' => 'required' , 
             ]
          );
@@ -55,7 +65,7 @@ class PengajuanController extends Controller
         ]); 
 
         if ($pengajuan) {
-            return  redirect('/');
+            return  redirect('/dosen/listPengajuan');
         }
     }
 

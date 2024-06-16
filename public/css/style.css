@@ -674,6 +674,29 @@ h3.cart-title {
   }
 }
 
+#billboard .banner-content {
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+
+#billboard #banner{
+  background-color: #48a7ff;
+  z-index: 1;
+}
+
+#billboard #banner img {
+  background-image: cover;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  background-color: #48a7ff;
+}
+
+
 /* 3. Icon Box - Company Services
 /*----------------------------------------------*/
 .icon-box .icon-box-icon svg {

@@ -6,8 +6,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="dismiss()" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          
-          <form method="POST" id="form_input" action="/pengajuan" name="form" enctype="multipart/form-data">
+          <form method="POST" id="form_input" action="/addPengajuan" name="form" enctype="multipart/form-data">
             @csrf
             <div class="mb-3" id="divJudul">
               <label for="judul" class="form-label">Judul Buku</label>

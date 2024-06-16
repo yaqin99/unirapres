@@ -17,4 +17,10 @@ class AdminController extends Controller
             'data'=> $data,
         ]);
     }
+    public function adminBerita(){
+        $data = Pengajuan::with(['dosen' , 'kategori'])->SearchPengajuan()->paginate(10);
+        return view('admin/pages/berita', [
+            'data'=> $data,
+        ]);
+    }
 }
