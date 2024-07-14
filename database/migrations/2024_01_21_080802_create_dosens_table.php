@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('dosens', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nama_depan');
+            $table->string('nama_belakang');
             $table->string('username');
             $table->string('password');
             $table->string('email')->unique();

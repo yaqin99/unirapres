@@ -24,8 +24,16 @@
             
             <div class="card-body">
                 <div class="d-flex justify-content-between">
+                  <div class="container col-12">
+                    <div class="row">
+                      <span class="card-title d-flex justify-content-between">
+                        List Berita
+                        <button class="btn btn-warning col-2" data-bs-toggle="modal" data-bs-target="#modalNews">Tambah Berita</button>
+                      </span>
 
-                  <h5 class="card-title d-flex justify-content-center">List Berita</h5>
+                    </div>
+                  </div>
+                  
                   <div class="d-flex align-items-center" id="divCheckAll" >
 
                     <div class="form-check">
@@ -42,63 +50,47 @@
                   
               <!-- Table with hoverable rows -->
               <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-bordered">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama Dosen</th>
-                    <th scope="col">Judul</th>
+                    <th scope="col">Judul Berita</th>
+                    <th scope="col">Kategori</th>
+                    <th scope="col">Isi Berita</th>
+                    <th scope="col">Gambar</th>
+                    <th scope="col">Deskripsi Gambar</th>
                     <th scope="col">Tanggal</th>
-                    <th scope="col">Rincian</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
-                 
                   @foreach ($data as $syifa)
                     
                  
                   <tr>
                     <th scope="row">{{ $loop->index + 1 }}</th>
-                    <td><a href="#"  class="dosen text-dark" data-bs-toggle="modal" data-bs-target="#modalDosen" 
-                      data-name="{{ $syifa->dosen->name }}"
-                     
-                      data-alamat="{{ $syifa->dosen->alamat }}"
-                      data-email="{{ $syifa->dosen->email }}" 
-                     
-                      data-noHp="{{ $syifa->dosen->no_hp }}"
-                      data-id="{{ $syifa->dosen->id }}" 
-                      >
-                      
-                      {{ $syifa->dosen->name }}</a>
+                    <td><a href="#"  class="dosen text-dark">{{ $syifa->judul }}</a>
                     </td>
-
-                    <td>{{ $syifa->judul_buku }}</td>
-                    <td>{{\Carbon\Carbon::parse($syifa->tanggal)->isoFormat(' dddd, D MMMM Y').' '.\Carbon\Carbon::parse($syifa->tanggal)->format('H:i:s').' WIB' }}</td>
-                   
-                    <td><a href="#" id="change"  class="draf text-dark" data-bs-toggle="modal" data-bs-target="#modalBerkas" 
-                      data-judul="{{ $syifa->judul_buku }}"
-                     
-                      data-penulis="{{ $syifa->penulis }}"
-                      data-kategori="{{ $syifa->kategori->nama_kategori }}" 
-                      data-ukuran="{{ $syifa->ukuran }}"
-                      data-jumlah_halaman="{{ $syifa->jumlah_halaman }}"
-                      data-cover="{{ $syifa->cover }}"
-                      data-daftar_isi="{{ $syifa->daftar_isi }}"
-                      data-isi_buku="{{ $syifa->isi_buku }}"
-                      data-sinopsis="{{ $syifa->sinopsis }}"
-                      data-id="{{ $syifa->dosen->id }}" 
-                      >
-                      
-                      Rincian</a>
+                    <td>{{ $syifa->kategoriBerita->nama_kategori }}</td>
+                    <td>{{ $syifa->isi }}</td>
+                    <td><a style="color: black;" target="blank" href="{{ '/storage/gambar_berita/'.$syifa->gambar}}">{{ $syifa->gambar }}</a></td>
+                    <td> 
+                      {{$syifa->deskripsi_gambar}}
                     </td>
-                    <td>{{ $syifa->status }}</td>
-                    <form action="/terbit/{{ $syifa->id }}" method="POST">
-                      @method('put')
-                      @csrf
-                      <td><button type="submit" class="btn btn-warning">Terbitkan</button></td>
-                    </form>
+                    <td>{{\Carbon\Carbon::parse($syifa->tanggal)->isoFormat(' dddd, D MMMM Y').' '.\Carbon\Carbon::parse($syifa->tanggal)->format('H:i:s').' WIB' }}</td>                    
+                      <td>
+                        <div class="btn-group">
+                          
+                          <a href="/editNews/{{$syifa->id}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i>
+                          </a>
+                          <form method="POST" action="/deleteBerita/{{ $syifa->id }}">
+                            @csrf
+                            <button class="btn btn-danger"><i class="bi bi-trash-fill"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                    
                   </tr>
                   @endforeach
                  

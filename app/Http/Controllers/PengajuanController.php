@@ -5,16 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kategori;
 use App\Models\Pengajuan;
+use App\Models\Berita;
 
 class PengajuanController extends Controller
 {
     public function layout(){
         $data = Kategori::all();
         $rilis = Pengajuan::with(['dosen' , 'kategori'])->where('status','Terbit')->paginate(4);
+        $rekom = Pengajuan::with(['dosen' , 'kategori'])->where('status','Terbit')->orderBy('views','DESC')->paginate(6);
+        $news = Berita::with(('kategoriBerita'))->paginate(4);
         // dd($rilis);
         return view('dosen/welcome' , [
             'kategori' => $data , 
             'rilis'=> $rilis,
+            'rekom' => $rekom , 
+            'news'=> $news,
         ]);
     }
     public function list(){

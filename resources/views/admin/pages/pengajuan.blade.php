@@ -62,7 +62,7 @@
                   <tr>
                     <th scope="row">{{ $loop->index + 1 }}</th>
                     <td><a href="#"  class="dosen text-dark" data-bs-toggle="modal" data-bs-target="#modalDosen" 
-                      data-name="{{ $syifa->dosen->name }}"
+                      data-name="{{  $syifa->dosen->nama_depan." ".$syifa->dosen->nama_belakang }}"
                      
                       data-alamat="{{ $syifa->dosen->alamat }}"
                       data-email="{{ $syifa->dosen->email }}" 
@@ -71,7 +71,7 @@
                       data-id="{{ $syifa->dosen->id }}" 
                       >
                       
-                      {{ $syifa->dosen->name }}</a>
+                      {{ $syifa->dosen->nama_depan." ".$syifa->dosen->nama_belakang }}</a>
                     </td>
 
                     <td>{{ $syifa->judul_buku }}</td>

@@ -15,7 +15,8 @@ class DosenSeeder extends Seeder
     {
         DB::table('dosens')->insert(
             [
-                'name' => "Fahrosi Angger Kelana" , 
+                'nama_depan' => "Fahrosi" , 
+                'nama_belakang' => "Angger Kelana" , 
                 'username' => "rosi" , 
                 'password' => bcrypt('rosi') , 
                 'email' => "rosi@gmail.com" , 

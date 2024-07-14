@@ -1,24 +1,18 @@
-<section id="billboard" class="position-relative overflow-hidden bg-light-blue">
-  <div class="swiper main-swiper">
-    <div class="swiper-wrapper">
-      
-      <div class="swiper-slide">
-        <div id="banner" class="container-fluid">
-            
-              <img src="images/unira-min.png" alt="banner"  >
-              {{-- <div class="banner-content">
-                <h1 class="display-2 text-uppercase text-light " >UNIRA PRESS</h1>
-              </div> --}}
-            
-            {{-- <div class="col-md-5">
-              <div class="image-holder">
-                <img src="images/banner.png" alt="banner" >
-              </div>
-            </div> --}}
-          
-        </div>
+<div class="about_section layout_padding">
+   <div class="container">
+      <div class="about_section_2">
+         <div class="row">
+            <div class="col-md-6"> 
+               <div class="about_taital_box">
+                  <h1 class="about_taital">Universitas Madura</h1>
+                  <p class=" about_text">Universitas Madura adalah perguruan tinggi yang terletak di Pamekasan, Madura, Jawa Timur. Dikenal sebagai pusat pendidikan yang unggul dan berkualitas dimana UNIRA menawarkan berbagai program studi berkualitas di bidang sains, teknologi, sosial, dan humaniora. </p>
+                  <div class="readmore_btn"><a href="https://unira.ac.id/" target="blank">Read More</a></div>
+               </div>
+            </div>
+            <div class="col-md-6"> 
+               <div class="image_iman"><img src="/images/perpus.jpeg" class="about_img"></div>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
-  
-</section>
+   </div>
+</div>

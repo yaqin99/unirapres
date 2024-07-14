@@ -5,40 +5,34 @@
           <div class="row d-flex flex-wrap justify-content-between">
             <div class="col-lg-3 col-sm-6 pb-3">
               <div class="footer-menu">
-                <h3>Unira Press</h3>
-                <p class="text-light">Nisi, purus vitae, ultrices nunc. Sit ac sit suscipit hendrerit. Gravida massa volutpat aenean odio erat nullam fringilla.</p>
+                {{-- <h3>Unira Press</h3> --}}
+                {{-- <p class="text-light">Nisi, purus vitae, ultrices nunc. Sit ac sit suscipit hendrerit. Gravida massa volutpat aenean odio erat nullam fringilla.</p> --}}
                 <div class="social-links">
                   <ul class="d-flex list-unstyled">
                     <li>
-                      <a href="#">
+                      <a target="blank" href="https://www.facebook.com/unirapmk">
                         <svg class="facebook">
                           <use xlink:href="#facebook" />
                         </svg>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a target="blank" href="https://www.instagram.com/univ.madura/">
                         <svg class="instagram">
                           <use xlink:href="#instagram" />
                         </svg>
                       </a>
                     </li>
+                    
                     <li>
-                      <a href="#">
-                        <svg class="twitter">
-                          <use xlink:href="#twitter" />
-                        </svg>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
+                      <a target="blank" href="https://www.linkedin.com/school/universitas-madura/">
                         <svg class="linkedin">
                           <use xlink:href="#linkedin" />
                         </svg>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a target="blank" href="https://www.youtube.com/@UniversitasMadurapamekasan">
                         <svg class="youtube">
                           <use xlink:href="#youtube" />
                         </svg>

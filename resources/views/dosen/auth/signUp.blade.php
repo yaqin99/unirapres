@@ -35,8 +35,12 @@
               </div>
               <form action="#" method="post">
                 <div class="form-group">
-                  <label for="nama">Nama Lengkap</label>
-                  <input type="text" class="form-control"  id="username">
+                  <label for="nama">Nama Depan</label>
+                  <input type="text" class="form-control"  id="depan">
+                </div>
+                <div class="form-group">
+                  <label for="nama">Nama Belakang</label>
+                  <input type="text" class="form-control"  id="belakang">
                 </div>
                 <div class="form-group">
                   <label for="username">Username</label>

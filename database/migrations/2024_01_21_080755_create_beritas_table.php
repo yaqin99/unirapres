@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kategori_id');
             $table->string('judul');
-            $table->text('headline');
+            $table->text('gambar');
+            $table->text('deskripsi_gambar');
             $table->text('isi');
             $table->string('pengirim');
             $table->dateTime('tanggal');
+            $table->timestamps();
+
         });
     }
 

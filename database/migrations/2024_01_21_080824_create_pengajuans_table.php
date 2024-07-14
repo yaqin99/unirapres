@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('cover');
             $table->string('daftar_isi');
             $table->string('isi_buku');
-            $table->string('sinopsis');
+            $table->text('sinopsis');
             $table->string('ukuran');
             $table->integer('jumlah_halaman');
             $table->integer('views');
