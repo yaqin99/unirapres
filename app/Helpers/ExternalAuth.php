@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Helpers;
+
 use App\Models\Dosen;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
-class ExternalAuth {
+class ExternalAuth
+{
   private $nama_depan;
   private $nama_belakang;
   private $username;
@@ -15,16 +18,17 @@ class ExternalAuth {
   private $isDosen;
   private $token;
 
-  public function login($username, $password) {
+  public function login($username, $password)
+  {
     try {
       $this->username = $username;
       $this->password = $password;
-      $token = Http::asForm()->post(Env('API_SIMAT') . '/v1/token' , [
+      $token = Http::asForm()->post(Env('API_SIMAT') . '/v1/token', [
         'username' => $username,
         'password' => $password
       ]);
-      if(!$token->json()['data']['attributes']['access']) {
-        return redirect()->back()->with('gagal' , 'Tidak ada akun yang ditemukan');
+      if (!$token->json()['data']['attributes']['access']) {
+        return redirect()->back()->with('gagal', 'Tidak ada akun yang ditemukan');
       }
       $this->token = $token->json()['data']['attributes']['access'];
     } catch (\Throwable $th) {
@@ -32,7 +36,8 @@ class ExternalAuth {
     }
   }
 
-  public function generateToken() {
+  public function generateToken()
+  {
     try {
       $user = Http::withToken($this->token)->get(Env('API_SIMAT') . '/v1/saya');
       return $user->json();
@@ -41,16 +46,24 @@ class ExternalAuth {
     }
   }
 
-  public function prepareBody() {
+  public function prepareBody()
+  {
     $user = $this->generateToken();
-    $this->nama_depan = explode(' ' , $user['data']['attributes']['nama'])[0];
-    $this->nama_belakang = explode(' ' , $user['data']['attributes']['nama']) > 1 ? explode(' ' , $user['data']['attributes']['nama'])[1] : ' ';
+    $this->nama_depan = explode(' ', $user['data']['attributes']['nama'])[0];
+    $this->nama_belakang = explode(' ', $user['data']['attributes']['nama']) > 1 ? explode(' ', $user['data']['attributes']['nama'])[1] : ' ';
     $this->email = $user['data']['attributes']['email'];
     $this->alamat = $user['data']['attributes']['alamat'];
     $this->isDosen = true;
   }
 
-  public function setDosen() {
+  public function isDosen()
+  {
+    $dkr = $this->generateToken();
+    return $dkr['data']['type'] == 'dkr';
+  }
+
+  public function setDosen()
+  {
     return [
       'nama_depan' => $this->nama_depan,
       'nama_belakang' => $this->nama_belakang,
@@ -63,30 +76,40 @@ class ExternalAuth {
     ];
   }
 
-  public function existDosen() {
-    $exist = Dosen::where('username' , $this->username)->first();
+  public function existDosen()
+  {
+    $exist = Dosen::where('username', $this->username)->first();
     return $exist;
   }
 
-  public function createDosen() {
+  public function createDosen()
+  {
     Dosen::create($this->setDosen());
   }
 
-  public function updateDosen() {
+  public function updateDosen()
+  {
     $exist = $this->existDosen();
     $exist->update($this->setDosen());
   }
 
-  public static function SIMAT($username, $password) {
+  public static function SIMAT($username, $password)
+  {
     $external = new ExternalAuth();
     $external->login($username, $password);
-    $external->generateToken();
+
+    # Disable comment if you want to check if the user is a dosen
+    // if (!$external->isDosen()) {
+    //   throw new \Exception('Bukan dosen');
+    // }
+
     $external->prepareBody();
-      $exist =$external->existDosen();
-      if(!$exist) {
+
+    $exist = $external->existDosen();
+    if (!$exist) {
       $external->createDosen();
-      } else {
+    } else {
       $external->updateDosen();
-      }
+    }
   }
 }
