@@ -12,6 +12,7 @@ class Dosen extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $guarded = ['id'];
+    public $timestamps = false;
 
 
     public function pengajuan (){
