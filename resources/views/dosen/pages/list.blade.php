@@ -26,10 +26,10 @@
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
    </head>
    <body>
       @include('dosen.component.navbar')
@@ -46,7 +46,7 @@
          </div>
          <div class="container">
             <div class="row col-2 d-flex justify-content-start mb-3">
-               <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pengajuan">Tambah Buku</button>
+               <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#pengajuan">Tambah Buku</button>
             </div>
          </div>
        </div>
@@ -56,7 +56,9 @@
               <tr>
                 <th scope="col">No</th>
                 <th scope="col">Judul</th>
-                <th scope="col">Tanggal</th>
+                {{-- <th scope="col">Tanggal</th> --}}
+                <th scope="col">Rincian</th>
+                <th scope="col">Catatan</th>
                 <th scope="col">Status</th>
               </tr>
             </thead>
@@ -66,57 +68,29 @@
                <tr>
                  <th scope="row">{{ $loop->index + 1}}</th>
                  <td>{{ $sari->judul_buku}}</td>
-                 <td>{{ \Carbon\Carbon::parse($sari->tanggal)->isoFormat(' dddd, D MMMM Y')}}</td>
+                 {{-- <td>{{ \Carbon\Carbon::parse($sari->tanggal)->isoFormat(' dddd, D MMMM Y')}}</td> --}}
+                 <td><a href="" id="buttonBerkas" onclick="set({{$sari}})" data-bs-toggle="modal" data-bs-target="#modalBerkasBuku" class="btn btn-outline-secondary"><i class="bi bi-file-earmark-pdf-fill"></i></a></td>
+                 <td><a href="" class="btn btn-outline-secondary"
+                  onclick="setComment({{$sari->comment}})" data-bs-toggle="modal" data-bs-target="#modalComment" class="btn btn-secondary"><i class="bi bi-chat-dots-fill"></i></a></td>
                  <td>{{ $sari->status}}</td>
                </tr>
                @endforeach
              </tbody>
           </table>
        </div>
-     
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="footer_social_icon">
-                     <ul>
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                     </ul>
-                  </div>
-                  <div class="location_text">
-                     <ul>
-                        <li>
-                           <a href="#">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">+01 1234567890</span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">demo@gmail.com</span>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
-                  <div class="form-group">
-                     <textarea class="update_mail" placeholder="Your Email" rows="5" id="comment" name="Your Email"></textarea>
-                     <div class="subscribe_bt"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+
+        
+      @include('dosen.component.footer')
       <!-- footer section end -->
       @include('dosen.component.modalPengajuan')
+      @include('dosen.component.modalBerkasBuku')
+      @include('dosen.component.modalComment')
       <!-- copyright section start -->
       <div class="copyright_section">
          <div class="container">
             <div class="row">
                <div class="col-sm-12">
-                  <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free Html Templates</a>
-                     Distribution by <a href="https://themewagon.com">ThemeWagon</a></p>
+                  <p class="copyright_text">Programmed By Fahrosi Angger Kelana 2024</p>
                </div>
             </div>
          </div>
@@ -133,5 +107,36 @@
       <script src="/js/custom.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
       <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-      </body>
+      <script>
+
+         function setComment (data){
+            console.log(data.body);
+            $("#komentar").text(data.body);
+
+
+         }
+         
+         function set (data) {
+
+         $("#edit_sinopsis").val(data.sinopsis);
+         $("#form_edit_pengajuan").attr('action' , `/dosen/listPengajuan/editPengajuan/${data.id}`);
+         $("#edit_judul").val(data.judul_buku);
+         $("#edit_penulis").val(data.penulis);
+         $("#edit_ukuran").val(data.ukuran);
+         $("#edit_jumlah_halaman").val(data.jumlah_halaman);
+         $("#edit_tanggal_buku").val(data.tanggal);
+        
+         $("#edit_cover").val(data.cover);
+         $("#edit_cover_view").attr('href',`{{ asset('/storage/cover/${data.cover}') }}`);
+         $("#edit_daftar_isi_view").attr('href',`{{ asset('/storage/daftar_isi/${data.daftar_isi}') }}`);
+         $("#edit_isi_buku_view").attr('href',`{{ asset('/storage/isi_buku/${data.isi_buku}') }}`);
+         $("#edit_daftar_isi").val(data.daftar_isi);
+         $("#edit_isi_buku").val(data.isi_buku);
+         
+
+         
+
+         }
+      </script>
+   </body>
 </html>

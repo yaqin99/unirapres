@@ -14,9 +14,9 @@
                  <div class="row">
                   @foreach ($rilis as $sari )            
                     <div class="col-lg-3 col-md-6">
-                       <div class="coffee_img"><img src="{{asset('/storage/cover/'.$sari->cover)}}"></div>
+                       <div class="coffee_img"><a target="blank" href="{{asset('/storage/cover/'.$sari->cover)}}"><img src="{{asset('/storage/cover/'.$sari->cover)}}"></a></div>
                        <div class="coffee_box">
-                          <h3 class="types_text">{{$sari->judul_buku}}</h3>
+                          <h3 class="types_text"><a target="blank" href="{{asset('/storage/cover/'.$sari->cover)}}">{{$sari->judul_buku}}</a></h3>
                           {{-- <p class="looking_text">{{$sari->penulis}}</p> --}}
                           <div class="read_bt"><a href="#">Read More</a></div>
                        </div>

@@ -3,14 +3,21 @@
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link " href="/admin">
+      <a class="nav-link " href="/admin/pengajuan">
         <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
+        <span>Data Buku</span>
       </a>
-    </li><!-- End Dashboard Nav -->
-
-
+    </li>
     <li class="nav-item">
+      <a class="nav-link " href="/admin/berita">
+        <i class="bi bi-layout-text-window-reverse"></i>
+        <span>Data Berita</span>
+      </a>
+    </li>
+    <!-- End Dashboard Nav -->
+
+
+    {{-- <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-layout-text-window-reverse"></i><span>Data</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -28,8 +35,8 @@
        
         
       </ul>
-    </li>
-    <li class="nav-item">
+    </li> --}}
+    {{-- <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#papparapparapparappa" data-bs-toggle="collapse" href="#">
         <i class="bi bi-person-gear"></i><span>Manajemen User</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -42,8 +49,8 @@
        
         
       </ul>
-    </li>
-    <li class="nav-item">
+    </li> --}}
+    {{-- <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#doddoroddoro" data-bs-toggle="collapse" href="#">
         <i class="bi bi-person-gear"></i><span>Kritik dan Saran</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -56,7 +63,7 @@
        
         
       </ul>
-    </li>
+    </li> --}}
 
     {{-- @can('superAdmin') --}}
     {{-- @if(auth()->guard('admin')->user()->role == 'admin') --}}

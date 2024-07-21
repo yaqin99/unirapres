@@ -14,7 +14,7 @@
                   <div class="blog_img"><img src="{{asset('/storage/gambar_berita/'.$data->gambar)}}"></div>
                   <h4 class="date_text">{{\Carbon\Carbon::parse($data->tanggal)->isoFormat(' D MMMM ')}}</h4>
                   <h4 class="prep_text">{{$data->judul}}</h4>
-                  <div class="read_btn"><a href="#">Read More</a></div>
+                  <div class="read_btn"><a href="/berita/{{$data->id}}">Read More</a></div>
                </div>
             </div>
             

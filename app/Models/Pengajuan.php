@@ -11,6 +11,11 @@ class Pengajuan extends Model
     protected $guarded = ['id'];
 
 
+        public function comment(){
+
+        return $this->hasOne(Comment::class);
+        }
+
         public function dosen(){
 
         return $this->belongsTo(Dosen::class);
@@ -23,13 +28,14 @@ class Pengajuan extends Model
          }
          public function scopeSearchPengajuan($query ){
             if (request('search')) {
-                $query->whereHas('kategori', function ($query) {
-                    $query->where('nama_kategori','like','%'.request('search').'%');
-                    // ->orWhere('nik','like','%'.request('search').'%');
-                })->orWhereHas('dosen', function ($query) {
-                    $query->where('name','like','%'.request('search').'%');
-                    // ->orWhere('nik','like','%'.request('search').'%');
-                });
+                $query->where('judul_buku','like','%'.request('search').'%');
+                // $query->whereHas('kategori', function ($query) {
+                //     $query->where('nama_kategori','like','%'.request('search').'%');
+                //     // ->orWhere('nik','like','%'.request('search').'%');
+                // })->orWhereHas('dosen', function ($query) {
+                //     $query->where('nama_depan','like','%'.request('search').'%');
+                //     // ->orWhere('nik','like','%'.request('search').'%');
+                // });
           }
           }
 

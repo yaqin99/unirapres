@@ -34,7 +34,7 @@
       @include('dosen.component.navbar')
       <!-- about section start -->
       <!-- coffee section start -->
-      <div class="coffee_section layout_padding">
+      <div class="coffee_section layout_padding ">
         <div class="container">
            <div class="row">
               <div class="col-md-12">
@@ -50,11 +50,10 @@
                        <div class="row">
                         @foreach ($data as $sari )            
                           <div class="col-lg-3 col-md-6">
-                             <div class="coffee_img"><img src="{{asset('/storage/cover/'.$sari->cover)}}"></div>
+                             <div class="coffee_img"><a target="blank" href="{{asset('/storage/cover/'.$sari->cover)}}"><img src="{{asset('/storage/cover/'.$sari->cover)}}"></a></div>
                              <div class="coffee_box">
-                                <h3 class="types_text">{{$sari->judul_buku}}</h3>
+                                <h3 class="types_text"><a target="blank" href="{{asset('/storage/cover/'.$sari->cover)}}">{{$sari->judul_buku}}</a></h3>
                                 {{-- <p class="looking_text">{{$sari->penulis}}</p> --}}
-                                <div class="read_bt"><a href="#">Read More</a></div>
                              </div>
                           </div>
                         @endforeach
@@ -64,19 +63,14 @@
                  
                  
               </div>
-              <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-              <i class="fa fa-arrow-left"></i>
-              </a>
-              <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-              <i class="fa fa-arrow-right"></i>
-              </a>
+              
            </div>
         </div>
       </div>
 
       <!-- contact section end -->
       <!-- footer section start -->
-      <div class="footer_section layout_padding">
+      <div class="footer_section layout_padding mt-20">
          <div class="container">
             <div class="row">
                <div class="col-md-12">

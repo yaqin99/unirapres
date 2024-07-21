@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="noHp" class="text-dark">Nomor Telepon</label>
-                    <input type="text"  class="form-control" id="noHp">
+                    <input type="text"  class="form-control" id="no_hp">
                 </div>
                 {{-- <div class="d-flex justify-content-end">
                   <button id="buttonEdit" class="btn btn-warning">Update</button>

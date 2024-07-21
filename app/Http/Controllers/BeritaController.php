@@ -4,10 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\KategoriBerita;
 use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
+
+    public function news($id){
+        $data = Berita::with('kategoriBerita')->where('id',$id)->first();
+        $recent = Berita::with('kategoriBerita')->orderBy('id','DESC')->paginate(5);
+        $foot = Berita::with('kategoriBerita')->orderBy('id','DESC')->paginate(3);
+        $kategori = KategoriBerita::all();
+        return view(
+            'news.news', [
+                'data' => $data , 
+                'kategori' => $kategori,
+                'recent' => $recent,
+                'foot' => $foot,
+            ]
+        );
+    }
 
     public function destroy()
     {
@@ -53,10 +69,6 @@ class BeritaController extends Controller
         $data = Berita::find($id);
         $ready = [] ;
         
-
-        
-        
-
         // $validatedData =  request()->validate([
         //     'kategori' => 'string' , 
         //     'judul_berita' => 'string' , 
@@ -67,15 +79,6 @@ class BeritaController extends Controller
         //     'tanggal' => 'string',
         // ]);
  
-        // dd([
-        //     'kategori_id' => request('kategori'), 
-        //     'judul' => request('judul_berita'), 
-        //     'gambar' => 'waw', 
-        //     'deskripsi_gambar' => request('deskripsi_gambar'), 
-        //     'isi' => request('isi_berita'), 
-        //     'pengirim' => request('author'),
-        //     'tanggal' => request('tanggal'), 
-        // ]);
         if(request('gambar') === null){
             $ready = [
                  'kategori_id' => request('kategori'), 

@@ -22,7 +22,7 @@
   
 
   <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('/signIn/images/bg_1.jpg');"></div>
+    <div class="bg order-1 order-md-2" style="background-image: url('/signIn/images/unira.png');"></div>
     <div class="contents order-2 order-md-1">
 
       <div class="container">
@@ -46,11 +46,11 @@
                   <input type="checkbox" name="remember"/>
                   <div class="control__indicator"></div>
                 </label>
-                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
+                {{-- <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>  --}}
               </div>
               <input type="submit" value="Log In" class="btn btn-block btn-primary">
               
-              <h6 class="text-center mt-4 mb-4">Pendaftaran Akun Baru <a href="/dosen/signUp">Daftar Disini</a></h6>
+              {{-- <h6 class="text-center mt-4 mb-4">Pendaftaran Akun Baru <a href="/dosen/signUp">Daftar Disini</a></h6> --}}
               
             </form>
           </div>

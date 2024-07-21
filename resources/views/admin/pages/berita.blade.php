@@ -1,5 +1,7 @@
 @extends('admin.dashboard')
 @section('main')
+@include('admin.modal.modalNews')
+@include('admin.modal.modalEdit') 
 
 <main id="main" class="main">
 
@@ -78,7 +80,7 @@
                       {{$syifa->deskripsi_gambar}}
                     </td>
                     <td>{{\Carbon\Carbon::parse($syifa->tanggal)->isoFormat(' dddd, D MMMM Y').' '.\Carbon\Carbon::parse($syifa->tanggal)->format('H:i:s').' WIB' }}</td>                    
-                      <td>
+                    <td>
                         <div class="btn-group">
                           
                           <a href="/editNews/{{$syifa->id}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i>
@@ -89,7 +91,7 @@
                             </button>
                           </form>
                         </div>
-                      </td>
+                    </td>
                     
                   </tr>
                   @endforeach
@@ -114,7 +116,7 @@
       </div>
     </section>
    
-      
+    
   	
 
        

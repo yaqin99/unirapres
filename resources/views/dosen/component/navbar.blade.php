@@ -1,7 +1,7 @@
 <div class="header_section">
   <div class="container">
      <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-        <a class="navbar-brand"href="index.html"><img src="/images/navlogo.png"></a>
+        <a class="navbar-brand"href="/"><img src="/images/navlogo.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,29 +21,33 @@
                  <a href="/dosen/signIn"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Login</a>
               @else
                  <a data-bs-toggle="dropdown" ><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>{{Auth::user()->nama_depan}}</a>
-               <ul id="theD" class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                  <li class="dropdown-header">
-                    <a href="/dosen/listPengajuan" class="text-dark text-capitalize"><span>Pengajuan</span></a>
+               <ul " class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                    
+                  <li>
+                     <form action="/dosen/akun/{{Auth::user()->id}}" method="get">
+                        @csrf
+                        <button  class="dropdown-item"  type="submit">Akun</button>
+                      </form>
                   </li>
                   <li>
-                    <hr class="dropdown-divider">
+                     <form action="/dosen/listPengajuan" method="get">
+                        @csrf
+                        <button  class="dropdown-item"  type="submit">Pengajuan</button>
+                      </form>
                   </li>
-        
                   <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <i class="bi bi-box-arrow-right"></i>
+                    
                       <form action="/logout" method="post">
                         @csrf
                         <button  class="dropdown-item"  type="submit">Keluar</button>
                       </form>
-                    </a>
                   </li>
                 </ul>
                 @endif
                </li>
               <li class="nav-item">
-               <form class="d-flex" id="pencarian" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Cari..." aria-label="Search">
+               <form class="d-flex" id="pencarian" role="search" action="/katalog">
+                  <input class="form-control me-2" type="search" name="search" placeholder="Cari..." aria-label="Search" value="{{ request('search') }}">
                   <button class="btn btn-outline-success" type="submit"><i class="text-light fa fa-search" aria-hidden="true"></i></button>
                 </form>
               </li>

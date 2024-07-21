@@ -85,20 +85,18 @@
 <body>
 
   <!-- ======= Header ======= -->
-
+  
   <!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
   @include('admin.component.sideBar')
   @include('admin.component.navBar')
   <!-- End Sidebar-->
-
+ 
   @yield('main')
   
-  @include('admin.modal.modalBerkas')
-  @include('admin.modal.modalDosen')
-  @include('admin.modal.modalNews')
-  @include('admin.modal.modalEdit')
+  @include('admin.modal.modalBaru')
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -131,38 +129,67 @@
   <script src="/modalAssets/js/popper.js"></script>
   <script src="/modalAssets/js/bootstrap.min.js"></script>
   <script src="/modalAssets/js/main.js"></script>
+
  
   <!-- Template Main JS File -->
-  <script src="/AdminAssets/js/main.js"></script>
-  <script src="/AdminAssets/js/modal.js"></script>
+  <script src="AdminAssets/js/main.js"></script>
   
   <script type="text/javascript">
 
-// $("#editin").click(function () {
 
-  
-//   let judul =  $(this).data('judul_berita_id');
-//   let gambar =  $(this).data('gambar');
-//   let deskripsi =  $(this).data('deskripsi_gambar');
-//   let kategori =  $(this).data('kategori');
-//   let tanggal =  $(this).data('tanggal');
-//   let isiBerita =  $(this).data('isi_berita');
-//   let author =  $(this).data('author');
-  
-//   console.log([
-//     judul,gambar,deskripsi,kategori,tanggal,isiBerita,author
-//   ])
-//   document.getElementById("gambar_edit").value = 'URL::asset(`/storage/gambar_berita/${gambar}`)';
-//   document.getElementById("judul_berita_edit").value = judul;
-//   document.getElementById("author_edit").value = author;
-//   document.getElementById("isi_berita_edit").value = isiBerita;
-//   document.getElementById("deskripsi_gambar_edit").value = deskripsi;
-//   document.getElementById("kategori_berita_edit").value = kategori;
-//   document.getElementById("tanggal_edit").value = tanggal;
-  
 
-// });
 
+function setComment(data){
+  $("#formComment").attr('action' , `/admin/pengajuan/editComment/${data.id}`);
+  $("#theId").val(data.id);
+  $("#isi_komen").val(data.comment.body);
+  console.log([
+    data.id , 
+    data.comment.body
+  ]);
+}
+
+
+function setDosen (data){
+  $("#namaLengkap").val(data.nama_depan.concat(" ",data.nama_belakang));
+  $("#alamat").val(data.alamat);
+  $("#email").val(data.email);
+  $("#no_hp").val(data.no_hp);
+}
+
+
+
+function berkas (data) {
+
+  // let judul =  $(this).data('judul');
+  // let penulis =  $(this).data('penulis');
+  // let kategori =  $(this).data('kategori');
+  // let ukuran =  $(this).data('ukuran');
+  // let jumlah_halaman =  $(this).data('jumlah_halaman');
+  // let cover =  $(this).data('cover');
+  // let daftar_isi =  $(this).data('daftar_isi');
+  // let isi_buku =  $(this).data('isi_buku');
+  // let sinopsis =  $(this).data('sinopsis');
+  // let id =  $(this).data('id');
+
+  // $("#judul").attr('action' , `/editUser/${id}`);
+
+  $("#judul").val(data.judul_buku);
+  $("#penulis").val(data.penulis);
+  $("#kategori").val(data.kategori.nama_kategori);
+  $("#ukuran").val(data.ukuran);
+  $("#jumlah_halaman").val(data.jumlah_halaman);
+  $("#cover").val(data.cover);
+  $("#drafCover").attr("href" , `{{ asset('/storage/cover/${data.cover}') }}` );
+  $("#daftar_isi").val(data.daftar_isi);
+  $("#drafDaftarIsi").attr("href" , `{{ asset('/storage/daftar_isi/${data.daftar_isi}') }}` );
+  $("#isi_buku").val(data.isi_buku);
+  $("#drafIsiBuku").attr("href" , `{{ asset('/storage/isi_buku/${data.isi_buku}') }}` );
+  $("#sinopsis").val(data.sinopsis);
+
+
+
+}
 
 </script>
 </body>

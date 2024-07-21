@@ -1,6 +1,9 @@
 @extends('admin.dashboard')
 @section('main')
 
+@include('admin.modal.modalBerkas')
+@include('admin.modal.modalDosen')
+
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -50,8 +53,9 @@
                     <th scope="col">Judul</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Rincian</th>
+                    <th scope="col">Catatan</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Opsi</th>
+                    <th scope="col">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -61,45 +65,34 @@
                  
                   <tr>
                     <th scope="row">{{ $loop->index + 1 }}</th>
-                    <td><a href="#"  class="dosen text-dark" data-bs-toggle="modal" data-bs-target="#modalDosen" 
-                      data-name="{{  $syifa->dosen->nama_depan." ".$syifa->dosen->nama_belakang }}"
-                     
-                      data-alamat="{{ $syifa->dosen->alamat }}"
-                      data-email="{{ $syifa->dosen->email }}" 
-                     
-                      data-noHp="{{ $syifa->dosen->no_hp }}"
-                      data-id="{{ $syifa->dosen->id }}" 
-                      >
+                    <td><a href="#" onclick="setDosen({{$syifa->dosen}})"  class="dosen text-dark" data-bs-toggle="modal" data-bs-target="#modalDosen">
                       
                       {{ $syifa->dosen->nama_depan." ".$syifa->dosen->nama_belakang }}</a>
                     </td>
 
                     <td>{{ $syifa->judul_buku }}</td>
-                    <td>{{\Carbon\Carbon::parse($syifa->tanggal)->isoFormat(' dddd, D MMMM Y').' '.\Carbon\Carbon::parse($syifa->tanggal)->format('H:i:s').' WIB' }}</td>
+                    <td>{{\Carbon\Carbon::parse($syifa->tanggal)->isoFormat(' dddd, D MMMM Y') }}</td>
                    
-                    <td><a href="#" id="change"  class="draf text-dark" data-bs-toggle="modal" data-bs-target="#modalBerkas" 
-                      data-judul="{{ $syifa->judul_buku }}"
-                     
-                      data-penulis="{{ $syifa->penulis }}"
-                      data-kategori="{{ $syifa->kategori->nama_kategori }}" 
-                      data-ukuran="{{ $syifa->ukuran }}"
-                      data-jumlah_halaman="{{ $syifa->jumlah_halaman }}"
-                      data-cover="{{ $syifa->cover }}"
-                      data-daftar_isi="{{ $syifa->daftar_isi }}"
-                      data-isi_buku="{{ $syifa->isi_buku }}"
-                      data-sinopsis="{{ $syifa->sinopsis }}"
-                      data-id="{{ $syifa->dosen->id }}" 
-                      >
-                      
-                      Rincian</a>
-                    </td>
-                    <td>{{ $syifa->status }}</td>
+                    <td><a href="#" onclick="berkas({{$syifa}})"  class="draf  btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalBerkas"><i class="bi bi-file-earmark-pdf-fill"></a></td>
+                    <td><a href="#" onclick="setComment({{$syifa}})" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalBaru" ><i class="bi bi-chat-dots-fill"></i></a></td>
                     <form action="/terbit/{{ $syifa->id }}" method="POST">
                       @method('put')
                       @csrf
-                      <td><button type="submit" class="btn btn-warning">Terbitkan</button></td>
+                      <td><button type="submit" onclick="return confirm('Apakah Anda Yaqin Menerbitkan Buku Ini?')" class="{{$syifa->status == 'Terbit' ? 'btn btn-success' : 'btn btn-secondary'}}">{{ $syifa->status == 'Terbit' ? 'Terbit' : 'Belum Terbit'}}</button></td>
                     </form>
+                    <td>
+                      <div class="btn-group">
+  
+                        <form method="POST" action="/deletePengajuan/{{ $syifa->id }}">
+                          @csrf
+                          <button onclick="return confirm('Apakah Anda Yakin Menghapus Buku Ini ?')" class="btn btn-danger"><i class="bi bi-trash-fill"></i>
+                          </button>
+                        </form>
+                      </div>
+                  </td>
                   </tr>
+                  
+
                   @endforeach
                  
                 
@@ -121,7 +114,7 @@
         </div>
       </div>
     </section>
-   
+  
       
   	
 
