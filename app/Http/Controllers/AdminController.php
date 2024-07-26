@@ -75,21 +75,21 @@ class AdminController extends Controller
     public function adminPengajuan(){
         $data = Pengajuan::with(['dosen' , 'kategori','comment'])->SearchPengajuan()->paginate(10);
         $kategori = KategoriBerita::all();
-        $isPengajuan = 1 ; 
+        $status = 'pengajuan' ; 
         return view('admin/pages/pengajuan', [
             'data'=> $data,
             'kategori' => $kategori , 
-            'isPengajuan' => $isPengajuan,
+            'status' => $status , 
         ]);
     }
     public function adminBerita(){
         $data = Berita::with(['kategoriBerita'])->SearchBerita()->paginate(10);
         $kategori = KategoriBerita::all();
-        $isBerita = true ; 
+        $status = 'berita' ; 
         return view('admin/pages/berita', [
             'data'=> $data,
             'kategori' => $kategori , 
-            'isBerita' => $isBerita,
+            'status' => $status , 
         ]);
     }
 }

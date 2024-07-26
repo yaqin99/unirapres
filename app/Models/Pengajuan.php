@@ -28,14 +28,13 @@ class Pengajuan extends Model
          }
          public function scopeSearchPengajuan($query ){
             if (request('search')) {
-                $query->where('judul_buku','like','%'.request('search').'%');
-                // $query->whereHas('kategori', function ($query) {
-                //     $query->where('nama_kategori','like','%'.request('search').'%');
-                //     // ->orWhere('nik','like','%'.request('search').'%');
-                // })->orWhereHas('dosen', function ($query) {
-                //     $query->where('nama_depan','like','%'.request('search').'%');
-                //     // ->orWhere('nik','like','%'.request('search').'%');
-                // });
+                $query->whereHas('kategori', function ($query) {
+                    $query->where('nama_kategori','like','%'.request('search').'%');
+                    // ->orWhere('nik','like','%'.request('search').'%');
+                })->orWhereHas('dosen', function ($query) {
+                    $query->where('nama_depan','like','%'.request('search').'%');
+                    // ->orWhere('nik','like','%'.request('search').'%');
+                })->orWhere('judul_buku','like','%'.request('search').'%');
           }
           }
 

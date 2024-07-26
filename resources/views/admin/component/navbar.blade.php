@@ -8,12 +8,22 @@
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div><!-- End Logo -->
 
+  @if ($status === 'pengajuan')
   <div class="search-bar">
     <form class="search-form d-flex align-items-center" method="GET" action="/admin/pengajuan">
-      <input type="text" name="search" placeholder="Cari.." title="Enter search keyword" value="{{ request('search') }}">
+      <input type="text" name="search" placeholder="Cari Buku.." title="Enter search keyword" value="{{ request('search') }}">
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
   </div>
+  @elseif ($status === 'berita')
+  <div class="search-bar">
+    <form class="search-form d-flex align-items-center" method="GET" action="/admin/berita">
+      <input type="text" name="search" placeholder="Cari Berita.." title="Enter search keyword" value="{{ request('search') }}">
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    </form>
+  </div>
+  
+  @endif
   <!-- End Search Bar -->
 
   <nav class="header-nav ms-auto">
@@ -31,12 +41,12 @@
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="/AdminAssets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
           
-          <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->name}}</span>
+          <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::guard('admin')->name}}</span>
         </a><!-- End Profile Iamge Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>{{Auth::user()->name}}</h6>
+            <h6>{{Auth::guard('admin')->name}}</h6>
             <span>Admin</span>
           </li>
           <li>

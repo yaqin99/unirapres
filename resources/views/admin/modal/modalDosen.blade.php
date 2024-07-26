@@ -9,19 +9,19 @@
             <form class="signup-form" id="modalUser">
                 <div class="form-group mb-2">
                     <label for="namaLengkap" class="text-dark">Nama Lengkap</label>
-                    <input type="text"  class="form-control" id="namaLengkap">
+                    <input type="text" required class="form-control" id="namaLengkap">
                 </div>
                 <div class="form-group mb-2">
                     <label for="alamat" class="text-dark">Alamat</label>
-                    <input type="text"  class="form-control" id="alamat">
+                    <input type="text" required class="form-control" id="alamat">
                 </div>
                 <div class="form-group mb-4">
                   <label for="email" class="text-dark">Email</label>
-                  <input type="email"  class="form-control" id="email">
+                  <input type="email" required class="form-control" id="email">
                 </div>
                 <div class="form-group mb-2">
                     <label for="noHp" class="text-dark">Nomor Telepon</label>
-                    <input type="text"  class="form-control" id="no_hp">
+                    <input type="text" required class="form-control" id="no_hp">
                 </div>
                 {{-- <div class="d-flex justify-content-end">
                   <button id="buttonEdit" class="btn btn-warning">Update</button>

@@ -11,19 +11,19 @@
               <div class="form-group mb-2">
                   <label for="judul" class="text-dark">Judul Berita</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" name="judul_berita" id="judul_berita_edit"  aria-describedby="button-addon2">
+                    <input type="text" class="form-control" required name="judul_berita" id="judul_berita_edit"  aria-describedby="button-addon2">
                   </div>
               </div>
               <div class="form-group mb-2">
                   <label for="ukuran" class="text-dark" >Gambar</label>
                   <div class="input-group">
-                      <input type="file" class="form-control" name="gambar" id="gambar_edit"  aria-describedby="button-addon2">
+                      <input type="file" class="form-control" required name="gambar" id="gambar_edit"  aria-describedby="button-addon2">
                   </div>
               </div>
               <div class="form-group mb-2">
                   <label for="kategori" class="text-dark" >Deskripsi Gambar</label>
                   <div class="input-group">
-                      <input type="text" class="form-control" name="deskripsi_gambar" id="deskripsi_gambar_edit"  aria-describedby="button-addon2">
+                      <input type="text" class="form-control" required name="deskripsi_gambar" id="deskripsi_gambar_edit"  aria-describedby="button-addon2">
                   </div>
               </div>
               <div class="form-group mb-2">
@@ -40,17 +40,17 @@
               <div class="form-group mb-2">
                   <label for="jumlah_halaman" class="text-dark" >Tanggal</label>
                   <div class="input-group">
-                      <input type="datetime-local" class="form-control"  name="tanggal" id="tanggal_edit"  aria-describedby="button-addon2">
+                      <input type="datetime-local" class="form-control" required name="tanggal" id="tanggal_edit"  aria-describedby="button-addon2">
                   </div>
               </div>
               <div class="form-group mb-2">
                   <label for="sinopsis" class="text-dark">Isi Berita</label>
-                  <textarea name="isi_berita" id="isi_berita_edit" class="form-control"  ></textarea>
+                  <textarea name="isi_berita" required id="isi_berita_edit" class="form-control"  ></textarea>
               </div>
               <div class="form-group mb-2">
                   <label for="ukuran" class="text-dark" >Author</label>
                   <div class="input-group">
-                      <input type="text" class="form-control" name="author" id="author_edit"  aria-describedby="button-addon2">
+                      <input type="text" class="form-control" required name="author" id="author_edit"  aria-describedby="button-addon2">
                   </div>
               </div>
           </div>

@@ -11,7 +11,7 @@
                 @method('put')
                 <div class="form-group mb-2">
                     <label for="sinopsis" class="text-dark">Komentar</label>
-                    <textarea name="comment" id="isi_komen" class="form-control"></textarea>
+                    <textarea name="comment" required id="isi_komen" class="form-control"></textarea>
                 </div>
                 <input type="text" name="theId" id="theId" hidden>
             </div>

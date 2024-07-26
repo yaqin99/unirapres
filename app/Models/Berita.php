@@ -19,13 +19,13 @@ class Berita extends Model
 
      public function scopeSearchBerita($query ){
         if (request('search')) {
-            $query->whereHas('kategori', function ($query) {
+            $query->whereHas('kategoriBerita', function ($query) {
                 $query->where('nama_kategori','like','%'.request('search').'%');
                 // ->orWhere('nik','like','%'.request('search').'%');
-            })->orWhereHas('dosen', function ($query) {
-                $query->where('name','like','%'.request('search').'%');
+            })->orWhere('judul','like','%'.request('search').'%')
+            ->orWhere('isi','like','%'.request('search').'%');
                 // ->orWhere('nik','like','%'.request('search').'%');
-            });
+           
       }
       }
 }
