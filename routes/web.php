@@ -26,7 +26,7 @@ Route::get('/berita/{id}',[BeritaController::class , 'news']);
 Route::get('/dosen/akun/{id}',[PengajuanController::class , 'akun']);
 Route::put('/dosen/akun/update/{id}',[DosenController::class , 'update']);
 Route::get('/dosen/listPengajuan',[PengajuanController::class , 'list']);
-Route::put('/dosen/listPengajuan/editPengajuan/{id}',[PengajuanController::class , 'editPengajuan']);
+Route::put('/dosen/listPengajuan/editPengajuan/{id}',[PengajuanController::class ,'editPengajuan']);
 
 Route::get('/admin',[AdminController::class , 'adminPengajuan'])->middleware('AdminNotLogged');
 Route::get('/admin/signIn',[AdminController::class , 'signIn'])->middleware('AdminLogged');

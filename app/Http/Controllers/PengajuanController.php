@@ -49,7 +49,7 @@ class PengajuanController extends Controller
     public function list(){
         $data = Kategori::all();
         $books = Pengajuan::with(['dosen' , 'kategori','comment'])->SearchPengajuan()->paginate(10);
-        return view('dosen/pages/list' , [
+        return view('dosen/data/dataPengajuan' , [
             'kategori' => $data ,
             'buku' => $books,
         ]);
